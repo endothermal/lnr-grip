@@ -35,6 +35,7 @@ def create_app():
         db_url = app.config['SQLALCHEMY_DATABASE_URI']
     elif app.config['WHEREAMI']=="HEROKU":
         db_url = app.config['CLEARDB_DATABASE_URL']
+        app.config['SQLALCHEMY_DATABASE_URI'] = db_url
         print("Connecting to {}...".format(db_url))
     else:
         print("ARE YOUR ENVIRONMENT VARIABLES SET UP CORRECTLY?")
