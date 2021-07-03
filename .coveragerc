@@ -1,0 +1,4 @@
+[run]
+ omit =
+  /Users/elanor/catchloops/hello-world/app/tests/*
+  /Users/elanor/catchloops/hello-world/venv/*

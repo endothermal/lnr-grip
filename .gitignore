@@ -1,1 +1,34 @@
 .env
+.DS_Store
+	.coverage
+	.idea/
+	.run/
+	app/.DS_Store
+	app/static/.DS_Store
+	app/static/.webassets-cache/
+	app/static/bs5/css/bootstrap-grid.css.map
+	app/static/bs5/css/bootstrap-grid.min.css
+	app/static/bs5/css/bootstrap-grid.min.css.map
+	app/static/bs5/css/bootstrap-reboot.css.map
+	app/static/bs5/css/bootstrap-reboot.min.css
+	app/static/bs5/css/bootstrap-reboot.min.css.map
+	app/static/bs5/css/bootstrap-utilities.css.map
+	app/static/bs5/css/bootstrap-utilities.min.css
+	app/static/bs5/css/bootstrap-utilities.min.css.map
+	app/static/bs5/css/bootstrap.css.map
+	app/static/bs5/css/bootstrap.min.css
+	app/static/bs5/css/bootstrap.min.css.map
+	app/static/bs5/js/bootstrap.bundle.js.map
+	app/static/bs5/js/bootstrap.bundle.min.js
+	app/static/bs5/js/bootstrap.bundle.min.js.map
+	app/static/bs5/js/bootstrap.esm.js.map
+	app/static/bs5/js/bootstrap.esm.min.js
+	app/static/bs5/js/bootstrap.esm.min.js.map
+	app/static/bs5/js/bootstrap.js.map
+	app/static/bs5/js/bootstrap.min.js
+	app/static/bs5/js/bootstrap.min.js.map
+	app/static/chart.js/
+	app/static/chartjs-plugin-datalabels/
+	app/static/dist/
+	htmlcov/
+	venv/
