@@ -25,13 +25,21 @@ def create_app():
     app.secret_key = app.config["SECRET_KEY"]
     app.config['SESSION_TYPE'] = 'filesystem' #change to redis when you have one of those set up
 
-    sql_hostname = app.config['SQL_HOSTNAME']
-    print("Connecting (init) to " + sql_hostname + "...")
+    db_url = None
+    if app.config['WHEREAMI']=="LOCAL":
+        sql_hostname = app.config['SQL_HOSTNAME']
+        print("Connecting (init) to " + sql_hostname + "...")
 
-    sql_port = int(app.config['SQL_PORT'])
-    app.config['SQLALCHEMY_DATABASE_URI'] = app.config['SQLALCHEMY_DATABASE_URI'].format(sql_port)
+        sql_port = int(app.config['SQL_PORT'])
+        app.config['SQLALCHEMY_DATABASE_URI'] = app.config['SQLALCHEMY_DATABASE_URI'].format(sql_port)
+        db_url = app.config['SQLALCHEMY_DATABASE_URI']
+    elif app.config['WHEREAMI']=="HEROKU":
+        db_url = app.config['CLEARDB_DATABASE_URL']
+        print("Connecting to {}...".format(db_url))
+    else:
+        print("ARE YOUR ENVIRONMENT VARIABLES SET UP CORRECTLY?")
 
-    engine = create_engine(app.config['SQLALCHEMY_DATABASE_URI'], pool_recycle=3600, pool_pre_ping=True)
+    engine = create_engine(db_url, pool_recycle=3600, pool_pre_ping=True)
     Session.configure(bind=engine)
 
     # Initialize Plugins

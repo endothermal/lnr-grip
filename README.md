@@ -1,2 +1,2 @@
-# hello-world
-A flask/bootstrap implementation
+# lnr-grip
+A flask/bootstrap implementation of the technical challenge
