@@ -1,0 +1,28 @@
+{
+  "name": "lnr-grip",
+  "version": "1.0.0",
+  "description": "Grip tech quiz",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/endothermal/lnr-grip.git"
+  },
+  "keywords": [
+    "lnr"
+  ],
+  "author": "Lnr",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/endothermal/lnr-grip/issues"
+  },
+  "homepage": "https://github.com/endothermal/lnr-grip#readme",
+  "dependencies": {
+    "less": "^4.1.1"
+  },
+  "engines": {
+    "node": "14.x"
+  }
+}
