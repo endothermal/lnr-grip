@@ -15,6 +15,7 @@ class Config:
     """Set Flask configuration vars from .env file."""
 
     #General config
+    WHEREAMI  = environ.get('WHEREAMI')
     FLASK_APP  = environ.get('FLASK_APP')
     FLASK_ENV  = environ.get('FLASK_ENV')
     SESSION_TIMEOUT = environ.get('SESSION_TIMEOUT')
