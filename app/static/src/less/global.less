@@ -1,0 +1,151 @@
+@import 'variables.less';
+
+body,
+html {
+  font-family: @body-font;
+  margin: 0;
+  padding: 0;
+  color: @HM_DK_GREY;
+  background: @HM_XLT_GREY;
+  height: 100%;
+}
+
+div#loading {
+    width: 35px;
+    height: 35px;
+    display: none;
+    background: url('../../img/loader.gif') no-repeat;
+    cursor: wait;
+    }
+
+
+//ul {
+//  list-style: none;
+//  width: 50%;
+//  border: 0.1em solid #eeeeee;
+//  padding: 0.5em;
+//
+//  li {
+//    display: flex;
+//    justify-content: space-between;
+//    align-items: center;
+//    border-bottom: 0.1em solid #ececec;
+//    padding-bottom: 0.5em;
+//    margin-bottom: 0.5em;
+//
+//    &:last-of-type {
+//      border-bottom: none;
+//      margin-bottom: 0;
+//      padding-bottom: 0;
+//    }
+//  }
+//}
+
+//.min_list {
+//  ul {
+//    list-style: none;
+//    width: 50%;
+//
+//    li {
+//      display: flex;
+//      justify-content: space-between;
+//      align-items: center;
+//    }
+//  }
+//}
+
+  .container_old {
+    max-width: 75%;
+    min-width: 600px;
+    margin: 2em;
+    min-height: 10%;
+    background: white;
+    padding: 3em;
+    box-shadow: 0 0 1em #bec6cf;
+
+    .attribute-title {
+      font-weight: 500;
+      font-size: 1.1em;
+      color: @HM_DK_BLUE;
+      padding: 0.5em;
+      text-decoration: none;
+    }
+
+    .attribute-value {
+      font-weight: 300;
+      font-size: .9em;
+      padding: 0.5em;
+    }
+
+    .field-title {
+      font-weight: 500;
+      font-size: 1.1em;
+      color: @HM_DK_BLUE;
+      padding: 0.5em;
+      text-decoration: none;
+    }
+
+
+    .field-value {
+      font-weight: 300;
+      font-size: .9em;
+    }
+
+
+    .field-value-small {
+      font-weight: 300;
+      font-size: .8em;
+    }
+
+    .alert-warning {
+      color: @HM_PURPLE;
+      background-color: @HM_GOLD;
+      border-color: @HM_ORANGE;
+      font-weight: 300;
+      font-size: .8em;
+      margin: 2.5em 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      @media (max-width: 50em) {
+        padding: 0.8em 1.1em;
+      }
+    }
+
+    .row {
+      margin-right: -15px;
+      margin-left: -15px;
+    }
+
+    .button {
+      background-color: @HM_LT_BLUE;
+      border: 0.1em solid @HM_BLUE;
+      border-radius: 0.1em;
+      color: @HM_WHITE;
+      padding: 0.6em 0.8em;
+      display: inline-block;
+      cursor: pointer;
+      outline: none;
+      vertical-align: top;
+      height: 3em;
+      font-size: .9em;
+      font-family: @body-font;
+      font-weight: 300;
+      text-decoration: none;
+    }
+  }
+
+
+
+  h1 {
+    margin-top: 5px;
+    color: @HM_BLUE;
+  }
+
+  h2 {
+    margin-top: 0;
+    color: @HM_DK_GREY;
+  }
+
+
+

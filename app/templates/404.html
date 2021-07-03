@@ -1,0 +1,15 @@
+{% extends "layout.jinja2" %}
+
+{% block pagestyles %}
+  <link href="{{ url_for('static', filename='dist/css/landing.css') }}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block content %}
+{% include "navigation-default.jinja2" %}
+<div class="container" align="center">
+<h1 class="text-secondary">404 Error</h1>
+<h2 class="text-danger">The page you requested does not exist</h2>
+<img width=400 src="{{ url_for('static', filename='img/404.jpg') }}" alt="404 Error" />
+<p>{{ error|e }}</p>
+</div>
+{% endblock %}

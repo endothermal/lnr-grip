@@ -1,0 +1,16 @@
+{% extends "layout.jinja2" %}
+
+{% block pagestyles %}
+  <link href="{{ url_for('static', filename='dist/css/landing.css') }}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block content %}
+{% include "navigation-default.jinja2" %}
+<div class="container" align="center">
+<h1 class="text-secondary">500 Error</h1>
+<h2 class="text-danger">Something went wrong on the server side</h2>
+<p>If this keeps happening, tell Elanor</p>
+<img width=400 src="{{ url_for('static', filename='img/500.jpg') }}" alt="500 Error" />
+<p>{{ error|e }}</p>
+</div>
+{% endblock %}

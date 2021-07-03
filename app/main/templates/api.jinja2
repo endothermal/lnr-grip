@@ -1,0 +1,51 @@
+{% extends "layout.jinja2" %}
+
+{% block pagestyles %}
+    <link href="{{ url_for('static', filename='dist/css/landing.css') }}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+
+{% block content %}
+    {% include "navigation-default.jinja2" %}
+
+    <div class="container">
+        {% for message in get_flashed_messages() %}
+            <div class="alert alert-warning">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                {{ message }}
+            </div>
+        {% endfor %}
+
+
+        <h1>API Info</h1>
+        <p>
+            The API is in alpha mode (version 1.0) and is not yet fixed (so don't rely on it).
+            <br/>
+            The available endpoints are listed below.
+        </p>
+        <div class="table-responsive">
+
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>API URLs</th>
+                    <th>Info</th>
+                </tr>
+                </thead>
+                {% for u in api_urls %}
+                    <tbody>
+                    <tr>
+                        <td><span class="field-value"><a href="{{ u }}">{{ u|e }}</a></span></td>
+                        <td><span class="field-value">{{ {
+                        "/api/v1.0/users": "A list of users",
+                        "/api/v1.0/users/<int:id>": "A specific user as indicated by the id, e.g. /api/v1.0/users/1",
+                    }[u] | default("") }}</span></td>
+                    </tr>
+                    </tbody>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+
+{% endblock %}
+
