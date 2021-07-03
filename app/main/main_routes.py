@@ -22,7 +22,7 @@ def before_request():
 @main_bp.route("/login", methods=('GET', 'POST'))
 def home():
     return render_template('welcome.html',
-                           title='Hello',
+                           title='Hello World',
                            body="This is where the info will go")
 
 

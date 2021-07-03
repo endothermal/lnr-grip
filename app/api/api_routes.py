@@ -1,7 +1,5 @@
-"""Routes for logged-in account pages."""
-from flask import Blueprint, make_response, request, jsonify, current_app
+from flask import Blueprint, make_response, jsonify
 from app.models.User import User
-from app import routes, session_scope
 from app.schemas.UserSchema import user_schema, users_schema
 
 api_bp = Blueprint('api_bp', __name__,
@@ -14,7 +12,7 @@ headers = {"Content-Type": "application/json"}
 
 @api_bp.route('/users', methods=['GET'])
 def api_admin_users():
-    """View users of the dashboard"""
+    """View users"""
     users = User.query.all()
     return make_response(users_schema.jsonify(users, many=True),
                          headers)
