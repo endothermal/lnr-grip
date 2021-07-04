@@ -1,10 +1,10 @@
 """Routes for main pages."""
 import json
 
-from flask import Blueprint, render_template, current_app
+from flask import Blueprint, render_template, current_app, request, url_for, redirect
 
-from app.api.api_routes import api_bp
-from app import routes
+from app.api.api_routes import api_bp, api_video_actions, api_video_time_user_id, api_video_times
+from app import routes, session_scope
 from flask import Flask
 
 main_bp = Blueprint('main_bp', __name__,
@@ -16,14 +16,12 @@ main_bp = Blueprint('main_bp', __name__,
 def before_request():
     routes.before_request()
 
-@main_bp.route('/', methods=('GET', 'POST'))
-@main_bp.route("/home", methods=('GET', 'POST'))
-@main_bp.route("/index", methods=('GET', 'POST'))
-@main_bp.route("/login", methods=('GET', 'POST'))
+@main_bp.route('/', methods=['GET'])
+@main_bp.route("/home", methods=['GET'])
+@main_bp.route("/index", methods=['GET'])
+@main_bp.route("/login", methods=['GET'])
 def home():
-    return render_template('welcome.html',
-                           title='Hello World',
-                           body="This is where the info will go")
+    return render_template('welcome.html')
 
 
 def get_bp_urls(blueprint):
@@ -39,7 +37,49 @@ def api():
                            body="API information",
                            api_urls=get_bp_urls(api_bp))
 
+@main_bp.route('/get_video_actions', methods=['GET'])
+def get_video_actions():
+    """
+    Renders the video_actions template using the results of the equivalent api call
+    Takes three optional request parameters, action, start_time and end_time.
 
+    :param action:
+        Can be "start" or "stop". Any other value is ignored and actions of all types are returned
+    :param start_time:
+        An integer. Defaults to 0
+    :param end_time:
+        An integer.
+    """
+    return render_template('video_actions.jinja2',
+                           title='Video actions',
+                           body="Find users' video actions",
+                           results=api_video_actions().get_json())
+
+
+@main_bp.route('/get_video_times', methods=['GET'])
+def get_video_times():
+    """
+    Renders the video_times template using the results of the equivalent api call
+    """
+    return render_template('video_times.jinja2',
+                           title='Video watch time',
+                           body="Find a user's total video time",
+                           results=api_video_times().get_json())
+
+
+@main_bp.route('/get_video_times/<int:user_id>', methods=['GET'])
+def get_video_time_user_id(user_id=1):
+    """
+    Renders the video_times template using the results of the equivalent api call.
+    Gets the duration for the given user_id
+
+    :param user_id:
+        An integer
+    """
+    return render_template('video_times.jinja2',
+                           title='Video watch time',
+                           body="Find a user's total video time",
+                           results=[api_video_time_user_id(user_id).get_json()])
 
 ########### JINJA FILTERS
 

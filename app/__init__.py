@@ -39,7 +39,7 @@ def create_app():
     else:
         print("ARE YOUR ENVIRONMENT VARIABLES SET UP CORRECTLY?")
 
-    engine = create_engine(db_url, pool_recycle=3600, pool_pre_ping=True)
+    engine = create_engine(db_url, pool_recycle=60, pool_pre_ping=True)
     Session.configure(bind=engine)
 
     # Initialize Plugins

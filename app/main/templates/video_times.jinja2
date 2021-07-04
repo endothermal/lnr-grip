@@ -1,0 +1,50 @@
+{% extends "layout.jinja2" %}
+
+{% block pagestyles %}
+    <link href="{{ url_for('static', filename='dist/css/landing.css') }}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block content %}
+    {% include "navigation-default.jinja2" %}
+    <div class="container">
+        <div class="row">
+            <h1>Video watch times</h1>
+            <p>Shows the video watch time for all users or an individual user by appending the user ID to the URL</p>
+            <p> e.g. <a href="{{ url_for('main_bp.get_video_times') }}/1">/get_video_times/1</a> will show the video watch time for user 1</p>
+        </div>
+        {% if results %}
+            {% if "error" in results[0] %}
+                <h2 class="text-danger">Error: {{ results[0].error }}</h2>
+            {%  else %}
+                <div class="row">
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col">User ID</th>
+                                        <th scope="col">Total duration</th>
+                                    </tr>
+                                    </thead>
+                                    {% for s in results %}
+                                        <tbody>
+                                            <tr>
+                                                <td>{{ s.user_id }}</td>
+                                                <td>{{ s.total_duration }}</td>
+                                            </tr>
+                                        </tbody>
+                                    {% endfor %}
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {%  endif %}
+        {% else %}
+            <div class="row p-3">
+                <p class="text-danger">No video times found</p>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

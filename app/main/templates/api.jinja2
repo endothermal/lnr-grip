@@ -39,6 +39,10 @@
                         <td><span class="field-value">{{ {
                         "/api/v1.0/users": "A list of users",
                         "/api/v1.0/users/<int:id>": "A specific user as indicated by the id, e.g. /api/v1.0/users/1",
+                        "/api/v1.0/video_actions": "Video actions filterable by request params action, start_time and end_time, e.g. /api/v1.0/video_actions?action=stop&start_time=400&end_time=600",
+                        "/api/v1.0/video_times": "Total video watch duration for all users",
+                        "/api/v1.0/video_times/<int:user_id>": "Total video watch duration for the given user, e.g. /api/v1.0/video_times/1",
+                        "/api/v1.0/user_app_permissions/<int:user_id>": "User app permissions for the given user, e.g. /api/v1.0/user_app_permissions/1",
                     }[u] | default("") }}</span></td>
                     </tr>
                     </tbody>

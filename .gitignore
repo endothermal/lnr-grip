@@ -32,3 +32,5 @@
 	app/static/dist/
 	htmlcov/
 	venv/
+        node_modules/
+	

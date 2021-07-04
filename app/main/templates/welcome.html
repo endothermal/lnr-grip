@@ -7,8 +7,52 @@
 {% block content %}
 {% include "navigation-default.jinja2" %}
 <div class="container">
-    <h1>{{title}}</h1>
-    <p>{{body}}</p>
+    <h1>Answers to tech questions</h1>
+    <ol>
+        <li>Result viewable at <a href="{{ url_for('main_bp.get_video_actions') }}">Users from video actions</a> on this
+            site. See also <a href="https://github.com/endothermal/lnr-grip.git">https://github.com/endothermal/lnr-grip.git</a>,
+            in particular:</li>
+        <ol>
+            <li><a href="https://github.com/endothermal/lnr-grip/blob/master/sql/views.sql">views.sql</a></li>
+            <li><a href="https://github.com/endothermal/lnr-grip/blob/master/app/main/main_routes.py">main_routes.py</a></li>
+            <li><a href="https://github.com/endothermal/lnr-grip/blob/master/app/api/api_routes.py">api_routes.py</a></li>
+        </ol>
+        <li>Result viewable at <a href="{{ url_for('main_bp.get_video_times') }}">Video watch duration</a> on this site.
+            Same code files as above.</li>
+        <li>See comments in code files as outlined above.</li>
+        <li>See <a href="https://github.com/endothermal/lnr-grip/blob/master/app/tests/test_video_actions.py">test_video_actions.py</a> and <a href="https://github.com/endothermal/lnr-grip/blob/master/app/tests/test_video_times.py">test_video_times.py</a> </li>
+        <li>Shortcomings:</li>
+        <ol>
+            <li>Python is not generally thought to be as quick or performant as other languages</li>
+            <li>Flask, although quick to implement, does not scale easily</li>
+            <li>Infrequently used apps built on Heroku go to sleep so start up time takes a few seconds and the DB
+                connection needs to be refreshed</li>
+            <li>This app has no auth so all the data in the associated DB is unsecured</li>
+            <li>Results are unpaginated, if the tables were very long, the pages would fall over</li>
+            <li>Pages should be presented with forms for a proper user experience, rather than relying on manual changes
+                to request parameters</li>
+            <li>The format of the table of the video actions does not allow for cases when a user's stop action is not
+                recorded, e.g. if they "X" out of an app rather than purposefully stopping the video. This means video
+                durations can be open-ended. It would be possible for a user to start multiple videos on the same device
+                and the rows are not sufficiently distinct to differentiate between each video. E.g. multiple video
+                views in different browsers on the same device or multiple views of different videos. A better
+                implementation would be to use a unique token to identify the unique user/session/video combination and
+                use that to identify associated actions.</li>
+            <li>The sql view video_durations will return bad durations if a user views another video on the same
+                device as they did previously. The view currently relies on the user_id and device to be unique.</li>
+        </ol>
+        <li>Result viewable at <a href="{{ url_for('api_bp.api_user_app_permissions', user_id=1) }}">User app
+            permissions</a> on this site. Same code files as above.</li>
+        <li>See <a href="https://github.com/endothermal/lnr-grip/blob/master/app/tests/test_user_app_permissions.py">test_user_app_permissions.py</a></li>
+        <li>Shortcomings:</li>
+        <ol>
+            <li>Not a particularly elegant solution, processing will grow with the length of the lists. Very big lists
+                parsed like this could prove problematic</li>
+            <li>A better solution would be to cache a pre-calculated list and serve that rather than calculate anew
+            each time</li>
+            <li>Another improvement would be to materialise this data in the DB and query permissions from there</li>
+        </ol>
+    </ol>
 </div>
 {% endblock %}
 

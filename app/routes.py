@@ -2,7 +2,7 @@
 from flask import current_app as app, request, render_template
 from datetime import timedelta
 from flask_session import Session
-from app import session_scope
+from app import db
 
 
 @app.before_request
@@ -18,3 +18,8 @@ def not_found_error(error):
 @app.errorhandler(500)
 def internal_error(error):
     return render_template('500.html',error=error), 500
+
+@app.teardown_appcontext
+def teardown_db(error):
+    db.session.close()
+    db.engine.dispose()
